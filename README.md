@@ -1,5 +1,3 @@
----
-
 # **DataGenerator – VHDL Module**
 
 ## **Overview**

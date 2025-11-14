@@ -1,7 +1,3 @@
-Got you — here is the **updated README**, matching your new project description:
-
----
-
 # **Rolling Average – VHDL Module**
 
 ## **Overview**
@@ -89,12 +85,5 @@ To simulate:
    * `OUT_AVG`
 
 ---
-
-If you want, I can also generate:
-
-✔ A matching LaTeX entry for your CV
-✔ A testbench for the rolling average module
-✔ A block diagram
-✔ A cleaner or more formal README
 
 Just say the word.

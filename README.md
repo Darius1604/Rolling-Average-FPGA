@@ -1,65 +1,73 @@
-# **DataGenerator – VHDL Module**
+Got you — here is the **updated README**, matching your new project description:
+
+---
+
+# **Rolling Average – VHDL Module**
 
 ## **Overview**
 
-`DataGenerator` is a VHDL module designed to generate 8-bit data patterns based on a 3-bit control input. It includes internal counters, multiple reset options, and clock-synchronized logic. The module can be used for data testing, FPGA stimulus generation, pattern generation, or as part of a larger digital design.
+The **Rolling Average** module is a VHDL component that generates pseudo-random 8-bit numbers and computes their running average based on a user-selected sample size. This makes it useful for digital signal processing experiments, FPGA testing, and hardware-based statistical filtering.
 
 ---
 
 ## **Features**
 
-* **Selectable output modes** using the `Control` input
-* **8-bit data output (`OUT_C`)** based on predefined patterns or sequences
-* **Numeric counter output (`NUM`)** updated independently
-* **Two reset signals** (`RST` and `RESETARE2`) for flexible control
-* **Clock-synchronous operation** (updates on rising edge of `CLK`)
-* **Enable input (`EN`)** to start or pause data generation
+* **Random number generation** (8-bit range)
+* **Configurable averaging window**
+  (number of samples determined by a control input)
+* **Real-time rolling average output**
+* **Clock-synchronous operation**
+* **Resettable internal accumulators and counters**
+* **Lightweight and FPGA-friendly design**
 
 ---
 
-## **Interface**
+## **Inputs and Outputs**
 
 ### **Inputs**
 
-| Signal      | Width | Description                     |
-| ----------- | ----- | ------------------------------- |
-| `CLK`       | 1     | System clock                    |
-| `EN`        | 1     | Enable for data/counter updates |
-| `RST`       | 1     | Global reset                    |
-| `RESETARE2` | 1     | Counter-only reset              |
-| `Control`   | 3     | Selects output mode             |
+| Signal    | Width | Description                         |
+| --------- | ----- | ----------------------------------- |
+| `CLK`     | 1     | System clock                        |
+| `EN`      | 1     | Enables sampling and averaging      |
+| `RST`     | 1     | Global synchronous reset            |
+| `Control` | 3     | Selects how many samples to average |
 
 ### **Outputs**
 
-| Signal  | Width | Description                  |
-| ------- | ----- | ---------------------------- |
-| `OUT_C` | 8     | Generated data output        |
-| `NUM`   | 8     | Counter-based numeric output |
+| Signal       | Width | Description             |
+| ------------ | ----- | ----------------------- |
+| `OUT_RANDOM` | 8     | Generated random value  |
+| `OUT_AVG`    | 8     | Current rolling average |
 
 ---
 
 ## **Operation Summary**
 
-* When `EN = '1'`, the module updates internal counters and generates new data values.
-* The `Control` vector chooses which data pattern or sequence is sent to `OUT_C`.
-* `RST` resets the whole module, while `RESETARE2` resets only the numeric counter.
-* All logic runs on the rising edge of `CLK`.
+1. When `EN = '1'`, the module generates a new pseudo-random number each clock cycle.
+2. The `Control` input selects how many samples (e.g., 2, 4, 8…) are used to compute the rolling average.
+3. Internal counters and accumulators update on every clock edge.
+4. The module outputs:
+
+   * the **current random number**, and
+   * the **rolling average** of the last *N* samples.
+5. Reset clears all internal registers and restarts accumulation.
 
 ---
 
-## **Common Use Cases**
+## **Use Cases**
 
-* FPGA test pattern generation
-* Debugging and validation of digital processing stages
-* Automated input stimulus for simulation
-* Teaching or demonstrating VHDL counters and state-based data output
+* FPGA digital filtering demos
+* Hardware-based data smoothing
+* Random data test harnesses
+* Teaching digital design concepts (accumulators, LFSRs, averaging)
 
 ---
 
 ## **File Structure**
 
 ```
-DataGenerator.vhd     → Main VHDL source code
+RollingAverage.vhd     → Main VHDL module
 ```
 
 ---
@@ -68,22 +76,25 @@ DataGenerator.vhd     → Main VHDL source code
 
 To simulate:
 
-1. Add `DataGenerator.vhd` to your project.
-2. Create a testbench that drives:
+1. Add `RollingAverage.vhd` to your project.
+2. Drive:
 
-   * `CLK` (periodic clock)
-   * `RST` (initial reset)
+   * `CLK`
+   * `RST`
    * `EN`
    * `Control`
-   * `RESETARE2` (optional)
-3. Observe `OUT_C` and `NUM` in the waveform viewer.
+3. Monitor:
+
+   * `OUT_RANDOM`
+   * `OUT_AVG`
 
 ---
 
-## **Notes**
+If you want, I can also generate:
 
-* Uses `IEEE.STD_LOGIC_UNSIGNED` for arithmetic.
-* All counters are 8-bit.
-* Output behavior for each `Control` value depends on the case statements inside the process block.
+✔ A matching LaTeX entry for your CV
+✔ A testbench for the rolling average module
+✔ A block diagram
+✔ A cleaner or more formal README
 
----
+Just say the word.

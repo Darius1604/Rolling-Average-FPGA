@@ -1,6 +1,3 @@
-Got it — here’s a clean, straightforward **README.md** written specifically for your VHDL project.
-(No worries, I’ll keep it concise and useful.)
-
 ---
 
 # **DataGenerator – VHDL Module**
@@ -92,11 +89,3 @@ To simulate:
 * Output behavior for each `Control` value depends on the case statements inside the process block.
 
 ---
-
-If you want, I can also generate:
-✔ A polished testbench
-✔ A block diagram
-✔ Inline documentation inside your VHDL file
-✔ A more formal or more casual README
-
-Just tell me.
